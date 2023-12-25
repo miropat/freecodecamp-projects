@@ -1,0 +1,33 @@
+// Function to apply the ROT13 substitution cipher to a given string
+function rot13(str) {
+  // Array representing the English alphabet
+  let alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+  // Split the input string into an array of characters
+  let splitstr = str.split("");
+  
+  // Initialize an empty string to store the decoded message
+  let decodedmessage = "";
+
+  // Loop through each character in the input string
+  for(let i = 0; i < splitstr.length; i++){
+    // Check if the character is in the alphabet
+    if(alphabet.indexOf(splitstr[i]) > -1){
+      // Algorithm to find the new index after applying ROT13
+      let newidx = (alphabet.indexOf(splitstr[i]) - 13 + 26) % 26;
+      
+      // Append the decoded letter to the result string
+      decodedmessage += alphabet[newidx];
+    } else {
+      // If the character is not in the alphabet, append it unchanged to the result string
+      decodedmessage += splitstr[i];
+    }  
+  }
+  
+  // Return the final decoded message
+  return decodedmessage;
+}
+
+// Example usage
+let result = rot13("SERR PBQR PNZC");
+console.log(result);
